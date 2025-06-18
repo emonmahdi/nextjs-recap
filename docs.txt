@@ -1,3 +1,12 @@
+Next.js Interview Questions: 
+
+1. https://github.com/mrhrifat/nextjs-interview-questions
+2. https://github.com/interviewplus-ai/next.js-interview-questions-and-answers
+
+
+Js Interview
+1. https://github.com/sudheerj/javascript-interview-questions
+
 Module 3 
 1. Creating layout
 2. Nested layout
