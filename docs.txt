@@ -5,3 +5,4 @@ Module 3
 4. SEO with MetaData
 5. Setting Page Title with MetaData
 6. Navigating with the Link Component
+7. Highlighting Active Link in Navigation
