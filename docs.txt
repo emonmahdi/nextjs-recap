@@ -4,3 +4,4 @@ Module 3
 3. Multiple root layout
 4. SEO with MetaData
 5. Setting Page Title with MetaData
+6. Navigating with the Link Component
