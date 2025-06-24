@@ -20,11 +20,11 @@ const Navbar = () => {
         <Link href="/">Logo</Link>
       </div>
       <div>
-        <ul>
+        <ul className="flex px-3">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <li key={item.href} className="flex px-3">
+              <li key={item.href}>
                 <Link
                   href={item.href}
                   className={`px-3 ${

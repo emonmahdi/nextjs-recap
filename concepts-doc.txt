@@ -1,0 +1,56 @@
+✅ What is a Layout?
+A layout is a UI structure shared across multiple pages, such as a header, sidebar, or footer. It is stateful and preserved between navigations.
+
+✅ Why use Layouts?
+Avoid repeating common UI elements.
+
+Improve performance by reusing static layout parts.
+
+Keep global state (e.g., user auth, theme toggle) intact.
+
+app/
+├── layout.tsx     ✅ Shared layout
+├── page.tsx       ✅ Homepage
+├── about/
+│   └── page.tsx   ✅ About page
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <header>🌐 Site Header</header>
+        <main>{children}</main>
+        <footer>📍 Footer</footer>
+      </body>
+    </html>
+  );
+}
+
+
+✅ What is a Template?
+A template is like a layout but is not persistent. It re-renders on every navigation, useful when pages should not share state.
+
+✅ Why use Templates?
+Useful for modals, dynamic dashboards, or onboarding flows.
+
+When you want to reset state on navigation.
+
+Improves flexibility when layout reuse is not desired.
+
+app/
+├── dashboard/
+│   ├── template.tsx   ✅ Unique template for dashboard
+│   └── page.tsx
+
+
+export default function DashboardTemplate({ children }: { children: React.ReactNode }) {
+  console.log('Dashboard template rendered');
+
+  return (
+    <div style={{ border: '2px solid green', padding: '10px' }}>
+      <h2>Dashboard Wrapper</h2>
+      {children}
+    </div>
+  );
+}
+

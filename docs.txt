@@ -17,3 +17,8 @@ Module 3
 7. Highlighting Active Link in Navigation
 8. Using Params and searchParams
 9. Navigating Programmatically and advanced Navigating
+
+Module 4
+
+1. Template for dynamic pages
+2. Handling Errors page
