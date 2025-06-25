@@ -22,3 +22,6 @@ Module 4
 
 1. Template for dynamic pages
 2. Handling Errors page
+3. Recovering Error, Handling error in Nested Route
+4. Global error Handling
+5. Parallel route explained

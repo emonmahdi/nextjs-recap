@@ -54,3 +54,78 @@ export default function DashboardTemplate({ children }: { children: React.ReactN
   );
 }
 
+----------------------------
+error.tsx – Route-level Error Handling
+-----------------------------
+✅ Why use error.tsx?
+It allows you to handle errors locally, scoped to a specific route (e.g., /dashboard, /profile), without affecting the whole app.
+
+app/
+├── dashboard/
+│   ├── error.tsx   ✅ Local error handler
+│   └── page.tsx
+
+
+📄 app/dashboard/error.tsx:
+
+'use client';
+
+export default function DashboardError({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <div style={{ color: 'red' }}>
+      <h2>Something went wrong in Dashboard!</h2>
+      <p>{error.message}</p>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  );
+}
+
+
+📄 app/dashboard/page.tsx:
+
+'use client';
+
+export default function DashboardPage() {
+  throw new Error('This is a dashboard-specific error!');
+  return <h1>Dashboard</h1>
+}
+
+
+https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
+
+---------------------------
+global-error.tsx – App-level Error Handling 
+---------------------------
+
+✅ Why use global-error.tsx?
+It handles unhandled or unexpected errors across the entire app that aren't scoped to a specific route (like 500s or internal crashes).
+
+app/
+├── global-error.tsx  ✅ Global error handler
+├── layout.tsx
+├── page.tsx
+
+
+📄 app/global-error.tsx:
+
+'use client';
+
+export default function GlobalError({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <html>
+      <body style={{ color: 'darkred', textAlign: 'center' }}>
+        <h1>🔥 Global Error</h1>
+        <p>{error.message}</p>
+        <button onClick={() => reset()}>Try Again</button>
+      </body>
+    </html>
+  );
+}
+
+
+📄 Anywhere in your app (page.tsx, etc):
+'use client';
+
+export default function HomePage() {
+  throw new Error('Global error triggered from home page!');
+}
