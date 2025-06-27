@@ -129,3 +129,35 @@ export default function GlobalError({ error, reset }: { error: Error; reset: () 
 export default function HomePage() {
   throw new Error('Global error triggered from home page!');
 }
+
+
+---------------------
+Parallel Routing explained
+------------------------
+✅ 1. What is a Parallel Route?
+
+Parallel Routes allow multiple pages or layouts to be rendered at the same time in different parts of a web page, without replacing each other. Each route renders independently in its own UI region.
+
+Parallel Routes আপনাকে একই লেআউটের মধ্যে একাধিক পেজ একসাথে বা নির্দিষ্ট শর্তে রেন্ডার করার সুযোগ দেয়। এটি অ্যাপের খুবই ডায়নামিক অংশগুলোর জন্য বিশেষভাবে উপযোগী, যেমন ড্যাশবোর্ড বা সোশ্যাল সাইটের ফিড ইত্যাদি।
+
+2. Why Use Parallel Routes?
+
+  - You want to display multiple route-based UI areas simultaneously (e.g., sidebar + chat + main content). 
+  - You need nested UI sections controlled by different parts of the URL or state.
+  - You want to build multi-panel dashboards, modals, or chat apps that update independently.
+
+3. How to use: 
+
+Parallel routes are created using named slots. Slots are defined with the @folder convention. For example, the following file structure defines two slots: @analytics and @team:
+
+  Q1: What are parallel routes, and how do they differ from nested routes?
+Answer: Parallel routes allow rendering multiple route-based components side-by-side independently. Nested routes are hierarchical — child routes render inside parent routes.
+
+Q2: Give a use case where parallel routes are useful.
+Answer: A messaging app: you can keep the inbox visible while navigating through different chat threads without replacing the whole UI.
+
+Q3: How do parallel routes improve performance?
+Answer: They avoid unnecessary re-renders or reloads of unrelated parts of the UI by isolating updates.
+
+Q4: How are parallel routes implemented in Next.js 15 App Router?
+Answer: Using @slot folders like @chat, @dashboard and rendering them through layout props.
