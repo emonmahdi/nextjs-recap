@@ -2,7 +2,7 @@ Next.js Interview Questions:
 
 1. https://github.com/mrhrifat/nextjs-interview-questions
 2. https://github.com/interviewplus-ai/next.js-interview-questions-and-answers
-
+3. https://dev.to/joodi/100-nextjs-interview-questions-with-answers-42a4
 
 Js Interview
 1. https://github.com/sudheerj/javascript-interview-questions
@@ -25,3 +25,4 @@ Module 4
 3. Recovering Error, Handling error in Nested Route
 4. Global error Handling
 5. Parallel route explained
+6. Handling unmatched  Routes

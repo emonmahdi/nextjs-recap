@@ -161,3 +161,73 @@ Answer: They avoid unnecessary re-renders or reloads of unrelated parts of the U
 
 Q4: How are parallel routes implemented in Next.js 15 App Router?
 Answer: Using @slot folders like @chat, @dashboard and rendering them through layout props.
+
+
+-------------------------
+Handling unmatched  Routes
+--------------------------
+
+You can define a default.js file to render as a fallback for unmatched slots during the initial load or full-page reload.
+
+Unmatched routes (also known as 404 routes) are URLs that don’t match any existing file or route pattern defined in your Next.js app/ or pages/ directory.
+
+When navigating to /settings, the @team slot will render the /settings page while maintaining the currently active page for the @analytics slot.
+
+On refresh, Next.js will render a default.js for @analytics. If default.js doesn't exist, a 404 is rendered instead.
+
+Additionally, since children is an implicit slot, you also need to create a default.js file to render a fallback for children when Next.js cannot recover the active state of the parent page.
+
+
+- Why Handle Unmatched Routes?
+    - Prevents users from landing on a broken or blank page.
+    - Allows you to show a branded or informative 404 page.
+    - Offers links to return home or find the correct content.
+
+- How to Handle Unmatched Routes in Next.js 15
+In Next.js App Router (app/ directory), unmatched routes are automatically handled by creating a not-found.js file.
+
+-----------------------
+Conditional Routes?
+-----------------------
+✅ 1. What are Conditional Routes?
+Definition:
+Conditional Routes in Next.js are routes that are only accessible/rendered based on certain conditions — like whether a user is authenticated, has the right role, feature flag is active, or data exists.
+
+In simpler terms:
+
+Conditional Routing lets you decide when and what to render based on runtime logic, even though the route physically exists.
+
+🧠 2. Why Use Conditional Routes?
+Reason	Explanation
+🔐 Access Control	Protect routes from unauthorized users (auth/role-based).
+🧠 Feature Flags	Show/hide features depending on configuration.
+⚙️ Data-Based Rendering	Conditionally route based on API or DB state.
+🧭 UX Personalization	Direct users to different pages based on their role.
+
+🔧 3. How to Use Conditional Routes in Next.js 15
+We'll use:
+
+redirect() from next/navigation
+
+notFound() for 404
+
+Authentication logic in middleware or layout/page
+
+Server-side condition (e.g., feature flag)
+
+💼 5. Interview Questions (with Sample Answers)
+Q1: What are conditional routes in Next.js?
+Answer: Routes that render or redirect based on certain conditions such as user role, authentication, feature flags, or data presence.
+
+Q2: How do you protect a route in Next.js?
+Answer: Use redirect() in a server component or layout to block unauthorized access, or middleware.js to handle access globally.
+
+Q3: What is the difference between redirect and notFound in Next.js?
+Answer:
+
+redirect() moves the user to another page.
+
+notFound() triggers the not-found.js page to simulate a 404.
+
+Q4: How can conditional routes help in a multi-role system?
+Answer: Each role (admin, user, moderator) can be conditionally directed to their own route or dashboard.
