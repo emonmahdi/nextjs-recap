@@ -1,0 +1,152 @@
+### ✅ **Intercepting Routes in Next.js 15**
+
+---
+
+#### 🔹 **Definition**:
+
+Intercepting Routes in **Next.js 15** allow you to render a route from **another location in the route tree** without changing the URL in the browser. It's like temporarily hijacking or overlaying a route from a different part of your app—commonly used for **modals, drawers, or overlays** while keeping the user in the same context.
+
+---
+
+#### 🔹 **Why Use Intercepting Routes?**
+
+* 📌 Show a **modal or sidebar** without navigating away from the current page.
+* 🔄 Keep the **UI context preserved** (e.g., background list remains visible).
+* 🌐 Enables **better UX** in Single Page Applications.
+* 💻 Useful for **dashboards, CMS, and messaging apps** where modals or details open frequently.
+
+---
+
+#### 🔹 **Real-world Examples:**
+
+1. **Inbox App**: You click an email from `/inbox`, and the email opens as a **modal** from route `/inbox/[id]`—but you don't leave `/inbox`.
+2. **E-commerce Site**: Clicking on a product opens a product **preview drawer**, loaded from `/product/[slug]`, while staying on the listing page.
+
+---
+
+### 🔧 **How to Use Intercepting Routes in Next.js 15**
+
+#### 📁 Folder Structure Example:
+
+```
+app/
+├── inbox/
+│   ├── page.tsx          // inbox page
+│   └── [id]/
+│       └── page.tsx      // email detail page
+├── (..)inbox/
+│   └── [id]/
+│       └── page.tsx      // intercepting modal
+```
+
+#### 🧠 `(..)` — The Key Concept:
+
+* `(..)` tells Next.js to **intercept** the route from somewhere else.
+* It renders `[id]/page.tsx` as a **modal inside inbox**.
+
+#### 🔽 Example Walkthrough:
+
+1. **`app/inbox/page.tsx`** – List of emails:
+
+```tsx
+'use client';
+import Link from 'next/link';
+
+export default function InboxPage() {
+  return (
+    <div>
+      <h1>Inbox</h1>
+      <ul>
+        <li><Link href="/inbox/123">Email 123</Link></li>
+      </ul>
+    </div>
+  );
+}
+```
+
+2. **`app/(..)inbox/[id]/page.tsx`** – Intercepting route for modal:
+
+```tsx
+'use client';
+import { useRouter } from 'next/navigation';
+
+export default function EmailModal({ params }: { params: { id: string } }) {
+  const router = useRouter();
+
+  return (
+    <div className="modal">
+      <button onClick={() => router.back()}>Close</button>
+      <h2>Email ID: {params.id}</h2>
+      <p>This is a modal showing email content.</p>
+    </div>
+  );
+}
+```
+
+---
+
+### 📘 **Important Notes**:
+
+* You must manage **layout.tsx** correctly to allow intercepted routes to render modals.
+* You can use **`<Modal>` or `<Drawer>`** UI components to visually display intercepted content.
+* Works **client-side only**, so ensure you're using `'use client'`.
+
+---
+
+### 🎯 **Interview Q\&A on Intercepting Routes**
+
+---
+
+#### ✅ Q1. **What are intercepting routes in Next.js?**
+
+**Answer**: Intercepting routes allow you to render a route from another location in the route tree without changing the current URL, useful for modals or overlays.
+
+---
+
+#### ✅ Q2. **What is the purpose of `(..)` in intercepting routes?**
+
+**Answer**: `(..)` is used to define an intercepting route. It tells Next.js to **pull a route from another part of the tree**, usually to overlay it in the current UI context.
+
+---
+
+#### ✅ Q3. **What’s a use-case where intercepting routes are better than a normal route?**
+
+**Answer**: When opening a product detail modal or email preview without navigating away from the list view. It keeps the user experience seamless.
+
+---
+
+#### ✅ Q4. **Can intercepting routes be server-rendered?**
+
+**Answer**: No, intercepting routes are a **client-only feature** and do not work with server-side rendering directly.
+
+---
+
+#### ✅ Q5. **What’s the difference between parallel routes and intercepting routes in Next.js?**
+
+**Answer**:
+
+* **Parallel Routes**: Render multiple UI segments independently in one route.
+* **Intercepting Routes**: Override part of a UI temporarily by hijacking another route’s rendering logic.
+
+---
+
+#### ✅ Q6. **Can I use intercepting routes for nested modals?**
+
+**Answer**: Yes, intercepting routes can be nested, but managing layouts and UI state becomes more complex.
+
+---
+
+### ✅ Summary Table
+
+| Feature             | Intercepting Routes                              |
+| ------------------- | ------------------------------------------------ |
+| Purpose             | Hijack a route and render in-place               |
+| Common Use          | Modals, drawers, previews                        |
+| Folder Syntax       | `(..)inbox/[id]`                                 |
+| Works on Server?    | ❌ No — client only                               |
+| Navigation Behavior | URL stays same or updates, but visually seamless |
+| Benefit             | Enhanced UX without full navigation              |
+
+---
+
+Would you like a **full project example** (inbox with modal preview using intercepting routes)? I can provide that too.

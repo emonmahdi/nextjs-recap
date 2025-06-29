@@ -6,7 +6,9 @@ import React from "react";
 
 const navItems = [
   { title: "Home", href: "/" },
+  { title: "Dashboard", href: "/dashboard" },
   { title: "About", href: "/about" },
+  { title: "Gallery", href: "/gallery" },
   { title: "Blog", href: "/blogs" },
   { title: "Contact", href: "/contact" },
 ];
@@ -15,7 +17,7 @@ const Navbar = () => {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <div className="flex justify-between max-w-7xl mx-auto border-b py-3 bg-amber-200">
+    <div className="bg-purple-800 px-12 text-white py-6 flex justify-between items-center">
       <div>
         <Link href="/">Logo</Link>
       </div>
@@ -27,7 +29,7 @@ const Navbar = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`px-3 ${
+                  className={`px-3 text-white ${
                     isActive ? "font-semibold text-orange-500" : "text-black"
                   }`}
                 >

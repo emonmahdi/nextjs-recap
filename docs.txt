@@ -26,3 +26,5 @@ Module 4
 4. Global error Handling
 5. Parallel route explained
 6. Handling unmatched  Routes
+7. Condition Rendering nextjs
+8. Intercepting Routes
